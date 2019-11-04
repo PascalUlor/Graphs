@@ -40,7 +40,7 @@ class Graph:
             v = q.dequeue()
             if v not in visited:
                 visited.add(v)
-                print('visited nodes', visited)
+                print('visited node', v)
                 for next_vertex in self.vertices[v]:
                     q.enqueue(next_vertex)
 
@@ -57,16 +57,22 @@ class Graph:
             v = s.pop()
             if v not in visited:
                 visited.add(v)
-                print('visited nodes', visited)
+                print('visited node', v)
                 for next_vertex in self.vertices[v]:
                     s.push(next_vertex)
-    def dft_recursive(self, starting_vertex):
+    def dft_recursive(self, starting_vertex, visited = set()):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
         This should be done using recursion.
         """
-        pass  # TODO
+        # pass  # TODO
+
+        visited.add(starting_vertex)
+        for v in self.vertices[starting_vertex]:
+            if v not in visited:
+                print('recur visited node', v)
+                self.dft_recursive(v)
     def bfs(self, starting_vertex, destination_vertex):
         """
         Return a list containing the shortest path from

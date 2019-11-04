@@ -23,15 +23,27 @@ class Graph:
         # pass  # TODO
         if v1 in self.vertices and v2 in self.vertices:
             self.vertices[v1].add(v2)
-            self.vertices[v2].add(v1)
+            # self.vertices[v2].add(v1)
         else:
             print('No vertex at here')
+            raise KeyError("That vertex does not exist")
     def bft(self, starting_vertex):
         """
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # pass  # TODO
+        q = Queue()
+        visited = set()
+        q.enqueue(starting_vertex)
+        while q.size() > 0:
+            v = q.dequeue()
+            if v not in visited:
+                visited.add(v)
+                print('visited nodes', visited)
+                for next_vertex in self.vertices[v]:
+                    q.enqueue(next_vertex)
+
     def dft(self, starting_vertex):
         """
         Print each vertex in depth-first order
@@ -84,16 +96,7 @@ if __name__ == '__main__':
     graph.add_edge(3, 5)
     graph.add_edge(2, 3)
     graph.add_edge(4, 6)
-
-    print('My test cases')
-    print('My Test script')
-    graph = Graph()  # Instantiate your graph
-    graph.add_vertex('0')
-    graph.add_vertex('1')
-    graph.add_vertex('2')
-    graph.add_vertex('3')
-    graph.add_edge('0', '1')
-    graph.add_edge('0', '3')
+    
     
     '''
     Should print:

@@ -10,8 +10,12 @@ class Graph:
     def add_vertex(self, vertex):
         """
         Add a vertex to the graph.
+        Given that the vertex of each vertice is set
+        so each vertex which is the node and key of the vertices is equated to a set
         """
-        pass  # TODO
+        # pass  # TODO
+        self.vertices[vertex] = set()
+        
     def add_edge(self, v1, v2):
         """
         Add a directed edge to the graph.

@@ -15,12 +15,17 @@ class Graph:
         """
         # pass  # TODO
         self.vertices[vertex] = set()
-        
+
     def add_edge(self, v1, v2):
         """
         Add a directed edge to the graph.
         """
-        pass  # TODO
+        # pass  # TODO
+        if v1 in self.vertices and v2 in self.vertices:
+            self.vertices[v1].add(v2)
+            self.vertices[v2].add(v1)
+        else:
+            print('No vertex at here')
     def bft(self, starting_vertex):
         """
         Print each vertex in breadth-first order
@@ -80,6 +85,16 @@ if __name__ == '__main__':
     graph.add_edge(2, 3)
     graph.add_edge(4, 6)
 
+    print('My test cases')
+    print('My Test script')
+    graph = Graph()  # Instantiate your graph
+    graph.add_vertex('0')
+    graph.add_vertex('1')
+    graph.add_vertex('2')
+    graph.add_vertex('3')
+    graph.add_edge('0', '1')
+    graph.add_edge('0', '3')
+    
     '''
     Should print:
         {1: {2}, 2: {3, 4}, 3: {5}, 4: {6, 7}, 5: {3}, 6: {3}, 7: {1, 6}}

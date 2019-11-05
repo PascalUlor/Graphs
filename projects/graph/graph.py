@@ -107,7 +107,7 @@ class Graph:
         s.push([starting_vertex])
         # created an empty visited set
         visited = set()
-        # while the queue is not empty
+        # while the stack is not empty
         while s.size() > 0:
             # pop to the path
             vertex = s.pop()

@@ -40,7 +40,7 @@ class Graph:
             v = q.dequeue()
             if v not in visited:
                 visited.add(v)
-                print('visited node', v)
+                # print('visited node', v)
                 for next_vertex in self.vertices[v]:
                     q.enqueue(next_vertex)
 
@@ -57,7 +57,7 @@ class Graph:
             v = s.pop()
             if v not in visited:
                 visited.add(v)
-                print('visited node', v)
+                # print('visited node', v)
                 for next_vertex in self.vertices[v]:
                     s.push(next_vertex)
     def dft_recursive(self, starting_vertex, visited = set()):
@@ -71,7 +71,7 @@ class Graph:
         visited.add(starting_vertex)
         for v in self.vertices[starting_vertex]:
             if v not in visited:
-                print('recur visited node', v)
+                # print('recur visited node', v)
                 self.dft_recursive(v)
     def bfs(self, starting_vertex, destination_vertex):
         """
@@ -79,7 +79,21 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        pass  # TODO
+        # pass  # TODO
+        q = Queue()
+        visited = set()
+        q.enqueue([starting_vertex])
+        while q.size() > 0:
+            vertex = q.dequeue()
+            last_vertex = vertex[-1]
+            if last_vertex not in visited:
+                if last_vertex == destination_vertex:
+                    return vertex
+                visited.add(last_vertex)
+                for next_vertex in self.vertices[last_vertex]:
+                    path = list(vertex)
+                    path.append(next_vertex)
+                    q.enqueue(path)
     def dfs(self, starting_vertex, destination_vertex):
         """
         Return a list containing a path from

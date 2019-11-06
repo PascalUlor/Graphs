@@ -12,6 +12,15 @@ def earliest_ancestor(ancestors, starting_node):
     """
     Graph = {1: {3}, 2: {3}, 3: {6}, 4: {5, 8}, 5: {6,7}, 6: {}, 
             7: {}, 8: {9}, 9: {}, 10: {1}, 11: {8}}
+
+            actual = {1: {10}, 3: {1, 2}, 2: set(), 6: {3, 5}, 5: 
+{4}, 7: {5}, 4: set(), 8: {11, 4}, 9: {8}, 11: set()
+, 10: set()}
+
+
+error = {1: {3}, 3: {6}, 2: {3}, 6: set(), 5: {6, 7},
+ 7: set(), 4: {8, 5}, 8: {9}, 9: set(), 11: {8}, 10:
+ {1}}
     """
     # Plot Graph
     gplot = Graph()
@@ -20,7 +29,7 @@ def earliest_ancestor(ancestors, starting_node):
     for parent, child in ancestors:
         gplot.add_vertex(parent)
         gplot.add_vertex(child)
-        gplot.add_edge(parent, child)
+        gplot.add_edge(child, parent)
         
     # Do a BFS (with paths)
     # create a queue

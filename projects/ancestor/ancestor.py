@@ -30,7 +30,16 @@ def earliest_ancestor(ancestors, starting_node):
 
     s = Stack()
     s.push(starting_node)
-    
+    root = 0
+    visited = set()
+    while s.size() > 0:
+        vertex = s.pop()
+        root = vertex
+        if vertex not in visited:
+            visited.add(vertex)
+            for child in gplot.vertices[vertex]:
+                s.push(child)
+    return root
 
 
     # print('======',gplot.vertices)

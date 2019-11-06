@@ -20,26 +20,39 @@ def earliest_ancestor(ancestors, starting_node):
     for parent, child in ancestors:
         gplot.add_vertex(parent)
         gplot.add_vertex(child)
-
-    for parent, child in ancestors:
         gplot.add_edge(parent, child)
-
-    # case where vertex does not exist
-    if not gplot.vertices[starting_node]:
-        return -1
-
-    s = Stack()
-    s.push(starting_node)
-    root = 0
-    visited = set()
-    while s.size() > 0:
-        vertex = s.pop()
-        root = vertex
-        if vertex not in visited:
-            visited.add(vertex)
-            for child in gplot.vertices[vertex]:
-                s.push(child)
-    return root
+        
+    # Do a BFS (with paths)
+    # create a queue
+    q = Queue()
+    # enqueue starting node inside a list
+    q.enqueue([starting_node])
+    # set a max path length to 1
+    max_path_length = 1
+    # set initial earlyest ancestor
+    earliest_ancestor = -1
+    # while queue has contents
+    while q.size() > 0:
+        # dequeue the path
+        path = q.dequeue()
+        # get the last vert
+        vert = path[-1]
+        # if path is longer or equal and the value is smaller, or if the path is longer
+        if (len(path) >= max_path_length and vert < earliest_ancestor) or (len(path) > max_path_length):
+            # set the earliest ancestor to the vert
+            earliest_ancestor = vert
+            # set the max path length to the len of the path
+            max_path_length = len(path)
+        # loop over each neighbor in the graphs vertices at index of vert
+        for neighbor in gplot.vertices[vert]:
+            # make a copy of the path
+            path_copy = list(path)
+            # append neighbor to the coppied path
+            path_copy.append(neighbor)
+            # then enqueue the copied path
+            q.enqueue(path_copy)
+    # return earliest ancestor
+    return earliest_ancestor
 
 
     # print('======',gplot.vertices)

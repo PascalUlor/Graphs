@@ -30,6 +30,18 @@ error = {1: {3}, 3: {6}, 2: {3}, 6: set(), 5: {6, 7},
         gplot.add_vertex(parent)
         gplot.add_vertex(child)
         gplot.add_edge(child, parent)
+    
+    # # Do a DFS
+    # s = Stack()
+    # s.push(starting_node)
+    # earliest_ancestor = -1
+
+    # while s.size() > 0:
+    #     vert = s.pop()
+    #     earliest_ancestor = vert
+    #     for v in gplot.vertices[vert]:
+    #         s.push(v)
+    # return earliest_ancestor
         
     # Do a BFS (with paths)
     # create a queue

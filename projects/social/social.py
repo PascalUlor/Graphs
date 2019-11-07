@@ -46,6 +46,7 @@ class SocialGraph:
         self.lastID = 0
         self.users = {}
         self.friendships = {}
+        self.count = 0
         # !!!! IMPLEMENT ME
 
         # Add users
@@ -79,6 +80,8 @@ class SocialGraph:
             friendship = possibleFreindships[i]
             # addfriendship of friendship[0] and friendship[1]
             self.addFriendship(friendship[0], friendship[1])
+            self.count += 1
+        print('=====',self.count)
 
     def getAllSocialPaths(self, userID):
         """
